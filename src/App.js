@@ -1,10 +1,11 @@
-import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
 import Navbar from "./components/Navbar"
 import "./components/Navbar.css";
-import IsAnon from "./components/IsAnon";
-import HomePage from "./pages/HomePage";
+import PatientListPage from "./pages/PatientListPage";
 import LoginPage from "./pages/LoginPage";
+import IsAnon from "./components/IsAnon";
 
 function App() {
   console.clear();
@@ -12,8 +13,12 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      
       <Routes>
-        <Route path="/" element={<HomePage></HomePage>}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        
+        <Route path="/patients" element={<PatientListPage />} />
+        
         <Route
           path="/login"
           element={
@@ -21,7 +26,8 @@ function App() {
               <LoginPage />
             </IsAnon>
           }
-        />{" "}
+        />
+      
       </Routes>
     </div>
   );
