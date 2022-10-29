@@ -1,9 +1,9 @@
+import { Alert, Button, Checkbox, Form, Input } from "antd";
+import Title from "antd/lib/skeleton/Title";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
-const API_URL = "http://localhost:5005";
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -16,12 +16,11 @@ function LoginPage(props) {
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
+  const handleLoginSubmit = (values) => {
     const requestBody = { email, password };
 
     axios
-      .post(`${API_URL}/auth/login`, requestBody)
+      .post(`${process.env.REACT_APP_API_URL}/auth/login`, requestBody)
       .then((response) => {
         // Request to the server's endpoint `/auth/login` returns a response
         // with the JWT string ->  response.data.authToken
@@ -41,24 +40,63 @@ function LoginPage(props) {
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div>
+      {errorMessage && (
+        <Alert
+          message="There was an error"
+          description={errorMessage}
+          type="error"
+          showIcon
+        />
+      )}
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
+      <Form
+        name="basic"
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 4 }}
+        initialValues={{ remember: true }}
+        onFinish={handleLoginSubmit}
+        autoComplete="off"
+      >
+        <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
+          <Title>Login</Title>
+        </Form.Item>
+        <Form.Item
+          label="Email:"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleEmail}
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
 
-        <label>Password:</label>
-        <input
+        <Form.Item
+          label="Password:"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
-        />
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{ offset: 9, span: 6 }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
 
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> Sign Up</Link>
