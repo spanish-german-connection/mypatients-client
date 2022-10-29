@@ -8,6 +8,8 @@ import AppointmentListPage from "./pages/AppointmentListPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PatientListPage from "./pages/PatientListPage";
+import PatientDetailsPage from "./pages/PatientDetailsPage";
+
 
 function App() {
   // console.clear();
@@ -24,6 +26,11 @@ function App() {
             <PatientListPage />
           </IsPrivate>
         } />
+
+        <Route
+          path="/patients/:patientId"
+          element={<IsPrivate> <PatientDetailsPage /> </IsPrivate>}
+        />
 
         <Route
           path="/login"

@@ -34,8 +34,8 @@ function PatientListPage() {
         return (
 
           <div key={patient._id}>
-            <h2>Name: {patient.name}, {patient.surname}</h2>
-
+            <h3>Name: {patient.name}, {patient.surname}</h3>
+            <p>Date of birth: {patient.dateOfBirth} </p>
             <Link to={`/patients/${patient._id}`}>
                 <button>Details</button>
             </Link>
