@@ -1,3 +1,4 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
@@ -6,6 +7,7 @@ import "./components/Navbar.css";
 import AppointmentListPage from "./pages/AppointmentListPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import PatientListPage from "./pages/PatientListPage";
 
 function App() {
   // console.clear();
