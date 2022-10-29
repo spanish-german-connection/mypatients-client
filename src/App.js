@@ -1,3 +1,4 @@
+import "antd/dist/antd.min.css";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import IsAnon from "./components/IsAnon";
@@ -7,9 +8,8 @@ import "./components/Navbar.css";
 import AppointmentListPage from "./pages/AppointmentListPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import PatientListPage from "./pages/PatientListPage";
 import PatientDetailsPage from "./pages/PatientDetailsPage";
-
+import PatientListPage from "./pages/PatientListPage";
 
 function App() {
   // console.clear();
@@ -21,15 +21,22 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
 
-        <Route path="/patients" element={
-          <IsPrivate>
-            <PatientListPage />
-          </IsPrivate>
-        } />
+        <Route
+          path="/patients"
+          element={
+            <IsPrivate>
+              <PatientListPage />
+            </IsPrivate>
+          }
+        />
 
         <Route
           path="/patients/:patientId"
-          element={<IsPrivate> <PatientDetailsPage /> </IsPrivate>}
+          element={
+            <IsPrivate>
+              <PatientDetailsPage />
+            </IsPrivate>
+          }
         />
 
         <Route
