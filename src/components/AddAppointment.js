@@ -24,6 +24,7 @@ function AddAppointment({ refreshAppointments }) {
   }, []);
 
   const handleSubmit = (newAppointment) => {
+    // console.log("newAppointment>>>", newAppointment);
     const token = localStorage.getItem("authToken");
     axios
       .post(
@@ -60,7 +61,7 @@ function AddAppointment({ refreshAppointments }) {
       <Divider>Add Appointment</Divider>
       <Form.Item
         label="Patient:"
-        name="patient"
+        name="patientId"
         rules={[{ required: true, message: "Please select a patient!" }]}
         className="align-left"
       >
