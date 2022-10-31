@@ -64,7 +64,13 @@ function LoginPage(props) {
           name="email"
           value={email}
           onChange={handleEmail}
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[
+            { required: true, message: "Please input your username!" },
+            {
+              type: "email",
+              warningOnly: false,
+            },
+          ]}
         >
           <Input />
         </Form.Item>
@@ -75,7 +81,15 @@ function LoginPage(props) {
           name="password"
           value={password}
           onChange={handlePassword}
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[
+            { required: true, message: "Please input your password!" },
+            {
+              pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
+              message:
+                "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.",
+              warningOnly: false,
+            },
+          ]}
         >
           <Input.Password />
         </Form.Item>
