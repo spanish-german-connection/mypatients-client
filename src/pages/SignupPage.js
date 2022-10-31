@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Divider, Form, Input } from "antd";
+import { Alert, Button, Col, Divider, Form, Input, Row } from "antd";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,12 +32,16 @@ function SignupPage() {
   return (
     <div>
       {errorMessage && (
-        <Alert
-          message="There was an error"
-          description={errorMessage}
-          type="error"
-          showIcon
-        />
+        <Row>
+          <Col span="4" offset="10">
+            <Alert
+              message="There was an error"
+              description={errorMessage}
+              type="error"
+              showIcon
+            />
+          </Col>
+        </Row>
       )}
 
       <Form
