@@ -1,5 +1,4 @@
-import { Alert, Button, Checkbox, Form, Input } from "antd";
-import Title from "antd/lib/skeleton/Title";
+import { Alert, Button, Checkbox, Divider, Form, Input } from "antd";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -58,9 +57,7 @@ function LoginPage(props) {
         onFinish={handleLoginSubmit}
         autoComplete="off"
       >
-        <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
-          <Title>Login</Title>
-        </Form.Item>
+        <Divider>Login</Divider>
         <Form.Item
           label="Email:"
           type="email"
