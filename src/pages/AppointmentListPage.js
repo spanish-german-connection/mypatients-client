@@ -8,7 +8,7 @@ import AddAppointment from "../components/AddAppointment";
 function AppointmentListPage() {
   const [appointments, setAppointments] = useState(null);
   const [appointmentToEdit, setAppointmentToEdit] = useState(null);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   const fetchAppointments = () => {
     const token = localStorage.getItem("authToken");

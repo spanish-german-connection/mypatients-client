@@ -103,14 +103,6 @@ function SignupPage() {
           <Input />
         </Form.Item>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 9, span: 6 }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
           <Button type="primary" htmlType="submit">
             Submit
