@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Input, DatePicker, Divider, Button, Form } from "antd";
+import { Alert, Input, DatePicker, Divider, Button, Form, Row, Col } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useState } from "react";
 import axios from "axios";
@@ -28,7 +28,7 @@ function AddPatient({ refreshPatients }) {
 
         refreshPatients();
         setErrorMessage(null);
-        
+
       })
       .catch((error) => {
         console.log(error);
@@ -43,13 +43,17 @@ function AddPatient({ refreshPatients }) {
 
   return (
     <div className="AddPatient">
-    {errorMessage && (
-        <Alert
-          message="There was an error"
-          description={errorMessage}
-          type="error"
-          showIcon
-        />
+      {errorMessage && (
+        <Row>
+          <Col span="4" offset="10">
+            <Alert
+              message="There was an error"
+              description={errorMessage}
+              type="error"
+              showIcon
+            />
+          </Col>
+        </Row>
       )}
 
       <Form
