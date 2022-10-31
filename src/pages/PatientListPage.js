@@ -1,14 +1,17 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import AddPatient from "./../components/AddPatient"
+import { Collapse } from 'antd';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+const { Panel } = Collapse;
 
 function PatientListPage() {
   const [patients, setPatients] = useState([]);
- 
-  
+
   const getAllPatients = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
@@ -29,7 +32,15 @@ function PatientListPage() {
 
   return (
     <div>
-      <h1>All Patients</h1>
+      <h1>Patients</h1>
+
+      <Collapse>
+        <Panel header=<h3>Create new Patient</h3> key="1">
+          <AddPatient refreshPatients={getAllPatients} />
+        </Panel>
+      </Collapse>
+
+      <h3>All patients</h3>
       {patients.map(patient => {
         return (
 
@@ -37,7 +48,7 @@ function PatientListPage() {
             <h3>Name: {patient.name}, {patient.surname}</h3>
             <p>Date of birth: {patient.dateOfBirth} </p>
             <Link to={`/patients/${patient._id}`}>
-                <button>Details</button>
+              <button>Details</button>
             </Link>
 
           </div>
@@ -46,7 +57,7 @@ function PatientListPage() {
 
     </div>
   )
-    
+
 }
 
 export default PatientListPage;

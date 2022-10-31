@@ -10,10 +10,10 @@ function PatientDetailsPage() {
     const { patientId } = useParams();
 
     useEffect(() => {
-        fetchPatientDetails();
+        getPatientDetails();
     }, []);
 
-    const fetchPatientDetails = () => {
+    const getPatientDetails = () => {
         const storedToken = localStorage.getItem('authToken');
         axios
             .get(
@@ -36,22 +36,23 @@ function PatientDetailsPage() {
                     <p>Email: <strong>{patient.email}</strong></p>
                     <p>Phone: <strong>{patient.phone}</strong></p>
                     <p>Therapist: <strong>{patient.therapist.name}</strong></p>
-                    <p>Diagnoses: <strong>{
+                    Diagnoses: <ul>{
                         patient.diagnoses.map(diagnosis => {
                             return (
-                                <p>{diagnosis}</p>
+                                
+                                <li key={patientId + diagnosis}><strong>{diagnosis}</strong></li>
                             )
                         })
-                    }</strong>
-                    </p>
-                    <p>Medications: <strong>{
+                    }
+                    </ul>
+                    Medications: <ul>{
                         patient.medications.map(medication => {
                             return (
-                                <p>{medication}</p>
+                                <li key={patientId + medication}><strong>{medication}</strong></li>
                             )
                         })
-                    }</strong>
-                    </p>
+                    }
+                    </ul>
 
                 </>
             )}
