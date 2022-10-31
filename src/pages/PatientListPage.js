@@ -12,7 +12,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function PatientListPage() {
   const [patients, setPatients] = useState([]);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const getAllPatients = () => {
     // Get the token from the localStorage
