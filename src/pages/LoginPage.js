@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Divider, Form, Input } from "antd";
+import { Alert, Button, Checkbox, Col, Divider, Form, Input, Row } from "antd";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -41,12 +41,16 @@ function LoginPage(props) {
   return (
     <div>
       {errorMessage && (
-        <Alert
-          message="There was an error"
-          description={errorMessage}
-          type="error"
-          showIcon
-        />
+        <Row>
+          <Col span="4" offset="10">
+            <Alert
+              message="There was an error"
+              description={errorMessage}
+              type="error"
+              showIcon
+            />{" "}
+          </Col>
+        </Row>
       )}
 
       <Form
