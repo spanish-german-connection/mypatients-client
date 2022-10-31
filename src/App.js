@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import AppointmentListPage from "./pages/AppointmentListPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import PatientDetailsPage from "./pages/PatientDetailsPage";
 import PatientListPage from "./pages/PatientListPage";
 
@@ -43,6 +44,14 @@ function App() {
           element={
             <IsAnon>
               <LoginPage />
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              <SignupPage />
             </IsAnon>
           }
         />
