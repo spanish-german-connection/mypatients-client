@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from "moment/moment";
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -32,28 +33,17 @@ function PatientDetailsPage() {
             {patient && (
                 <>
                     <h1>{patient.surname} {patient.name}</h1>
-                    <p>Date of birth: <strong>{patient.dateOfBirth}</strong></p>
+                    <p>Date of birth: <strong>
+                        {`${moment(patient.dateOfBirth).format(
+                            "DD-MMM-YYYY"
+                        )}`}
+                    </strong></p>
+                    <p>Date of birth: </p>
                     <p>Email: <strong>{patient.email}</strong></p>
                     <p>Phone: <strong>{patient.phone}</strong></p>
                     <p>Therapist: <strong>{patient.therapist.name}</strong></p>
-                    Diagnoses: <ul>{
-                        patient.diagnoses.map(diagnosis => {
-                            return (
-                                
-                                <li key={patientId + diagnosis}><strong>{diagnosis}</strong></li>
-                            )
-                        })
-                    }
-                    </ul>
-                    Medications: <ul>{
-                        patient.medications.map(medication => {
-                            return (
-                                <li key={patientId + medication}><strong>{medication}</strong></li>
-                            )
-                        })
-                    }
-                    </ul>
-
+                    <p>Diagnosis: <strong>{patient.diagnoses}</strong></p>
+                    <p>Medications: <strong>{patient.medications}</strong></p>
                 </>
             )}
 

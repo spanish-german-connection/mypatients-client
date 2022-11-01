@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, DatePicker, Divider, Button, Form } from "antd";
+import { Alert, Input, DatePicker, Divider, Button, Form, Row, Col } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { useState } from "react";
 import axios from "axios";
@@ -9,6 +9,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function AddPatient({ refreshPatients }) {
   const [form] = Form.useForm();
+  const [errorMessage, setErrorMessage] = useState(null);
+
 
   const handleSubmit = (newPatient) => {
     const storedToken = localStorage.getItem('authToken');
@@ -25,13 +27,35 @@ function AddPatient({ refreshPatients }) {
         form.resetFields();
 
         refreshPatients();
+        setErrorMessage(null);
+
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      }
+
+      );
+
   };
 
 
   return (
     <div className="AddPatient">
+      {errorMessage && (
+        <Row>
+          <Col span="4" offset="10">
+            <Alert
+              message="There was an error"
+              description={errorMessage}
+              type="error"
+              showIcon
+            />
+          </Col>
+        </Row>
+      )}
+
       <Form
         form={form}
         labelCol={{ span: 10 }}
@@ -49,10 +73,10 @@ function AddPatient({ refreshPatients }) {
         }}
       >
         <Divider>Add Patient</Divider>
-
         <Form.Item
           label="Name:"
           name="name"
+          className="align-left"
           rules={[
             {
               required: true,
@@ -66,6 +90,7 @@ function AddPatient({ refreshPatients }) {
         <Form.Item
           label="Surname:"
           name="surname"
+          className="align-left"
           rules={[
             {
               required: true,
@@ -83,12 +108,13 @@ function AddPatient({ refreshPatients }) {
           className="align-left"
           rules={[{ required: true, message: "Please select the date of birth!" }]}
         >
-          <DatePicker/>
+          <DatePicker />
         </Form.Item>
 
         <Form.Item
           label="Email:"
           name="email"
+          className="align-left"
           rules={[
             {
               type: 'email',
@@ -107,6 +133,7 @@ function AddPatient({ refreshPatients }) {
         <Form.Item
           label="Phone:"
           name="phone"
+          className="align-left"
           rules={[
             {
               required: true,
@@ -118,14 +145,27 @@ function AddPatient({ refreshPatients }) {
 
         </Form.Item>
 
-        <Form.Item label="Diagnoses:">
-          <TextArea
-            name="diagnoses"
-          />
+        <Form.Item
+          label="Diagnoses:"
+          name="diagnoses"
+          className="align-left"
+          rules={[
+            {
+              required: true,
+              message: 'Please provide a diagnosis or a provisional indication!',
+            },
+          ]}
+        >
+          <TextArea />
         </Form.Item>
 
-        <Form.Item label="Medications:" name="medications">
-          <TextArea/>
+        <Form.Item
+          label="Medications:"
+          name="medications"
+          className="align-left"
+        >
+
+          <TextArea />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
@@ -135,7 +175,6 @@ function AddPatient({ refreshPatients }) {
         </Form.Item>
 
       </Form>
-
     </div>
   );
 }

@@ -1,16 +1,18 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment/moment";
 import { Link } from "react-router-dom";
 import AddPatient from "./../components/AddPatient"
-import { Collapse } from 'antd';
+import { Divider, Button, Radio, Row, Col } from 'antd';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const { Panel } = Collapse;
+
 
 function PatientListPage() {
   const [patients, setPatients] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   const getAllPatients = () => {
     // Get the token from the localStorage
@@ -29,24 +31,37 @@ function PatientListPage() {
     getAllPatients();
   }, []);
 
+  const showHideForm = () => setShowForm((prevState) => !prevState);
+
 
   return (
     <div>
       <h1>Patients</h1>
 
-      <Collapse>
-        <Panel header=<h3>Create new Patient</h3> key="1">
-          <AddPatient refreshPatients={getAllPatients} />
-        </Panel>
-      </Collapse>
 
-      <h3>All patients</h3>
+      {showForm && (
+        <AddPatient refreshPatients={getAllPatients} />
+      )}
+
+      <Row>
+        <Col span={8} offset={8}>
+          <Button value="large" onClick={showHideForm}>
+            {showForm ? "Hide Form" : "Add new patient"}
+          </Button>
+        </Col>
+      </Row>
+      <br />
+
+      <Divider>All patients</Divider>
       {patients.map(patient => {
         return (
 
           <div key={patient._id}>
             <h3>Name: {patient.name}, {patient.surname}</h3>
-            <p>Date of birth: {patient.dateOfBirth} </p>
+            <p>Date of birth: {`${moment(patient.dateOfBirth).format(
+                "DD-MMM-YYYY"
+              )}`}</p>
+
             <Link to={`/patients/${patient._id}`}>
               <button>Details</button>
             </Link>
