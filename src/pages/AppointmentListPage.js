@@ -2,20 +2,18 @@ import { Button, Col, Divider, Radio, Row } from "antd";
 import axios from "axios";
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AddAppointment from "../components/AddAppointment";
+import AppointmentCard from "../components/AppointmentCard";
+import getAuthHeader from "../utils/token";
 
 function AppointmentListPage() {
   const [appointments, setAppointments] = useState(null);
   const [appointmentToEdit, setAppointmentToEdit] = useState(null);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const fetchAppointments = () => {
     const token = localStorage.getItem("authToken");
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/appointments`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get(`${process.env.REACT_APP_API_URL}/api/appointments`, getAuthHeader())
       .then((response) => setAppointments(response.data))
       .catch((error) => console.log(error));
   };
@@ -24,14 +22,24 @@ function AppointmentListPage() {
     fetchAppointments();
   }, []);
 
-  const showHideForm = () => setShowForm((prevState) => !prevState);
+  const showHideForm = () => {
+    setAppointmentToEdit(null);
+    setShowForm((prevState) => !prevState);
+  };
+
+  const editAppointment = (appointment) => {
+    setAppointmentToEdit(appointment);
+    setShowForm(true);
+  };
 
   return (
     <div>
       {showForm && (
-        <AddAppointment
+        <AppointmentCard
+          appointmentToEdit={appointmentToEdit}
           refreshAppointments={fetchAppointments}
-        ></AddAppointment>
+          setShowForm={setShowForm}
+        ></AppointmentCard>
       )}
 
       <Row>
@@ -44,7 +52,7 @@ function AppointmentListPage() {
       <br />
 
       <Divider>Appointments List</Divider>
-      <p>Total appointments {appointments && appointments.length}</p>
+      {/* <p>Total appointments {appointments && appointments.length}</p> */}
       {appointments &&
         appointments.map((appointment) => {
           return (
@@ -64,9 +72,13 @@ function AppointmentListPage() {
                 {appointment.patient?.name + " " + appointment.patient?.surname}
               </p>
               <p>{`${appointment.notes?.slice(0, 12)}...`}</p>
-              <Link to={`/appointments/${appointment._id}`}>
-                <Button>Details</Button>
-              </Link>
+              <Button
+                onClick={() => {
+                  editAppointment(appointment);
+                }}
+              >
+                Details
+              </Button>
             </div>
           );
         })}

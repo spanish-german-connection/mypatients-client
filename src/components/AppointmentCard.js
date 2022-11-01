@@ -1,13 +1,45 @@
-import { DatePicker, Divider, Button, Form, Radio, Select, Switch } from "antd";
+import {
+  DatePicker,
+  Divider,
+  Button,
+  Form,
+  Radio,
+  Select,
+  Switch,
+  Input,
+  Modal,
+} from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import "./AddAppointment.css";
+import getAuthHeader from "../utils/token";
+import "./AppointmentCard.css";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
-function AddAppointment({ refreshAppointments }) {
+function AppointmentCard({
+  setShowForm,
+  appointmentToEdit,
+  refreshAppointments,
+}) {
   const [patients, setPatients] = useState(null);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    fetchPatients();
+  }, []);
+
+  useEffect(() => {
+    appointmentToEdit &&
+      form.setFieldsValue({
+        id: appointmentToEdit._id,
+        patientId: appointmentToEdit.patient._id,
+        date: moment(appointmentToEdit.date),
+        isPaid: appointmentToEdit.isPaid,
+        recurring: appointmentToEdit.recurring,
+        notes: appointmentToEdit.notes,
+      });
+  }, [appointmentToEdit]);
 
   const fetchPatients = () => {
     const token = localStorage.getItem("authToken");
@@ -19,28 +51,59 @@ function AddAppointment({ refreshAppointments }) {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    fetchPatients();
-  }, []);
+  const initializeForm = () => {
+    form.resetFields();
+    setShowForm(false);
+    refreshAppointments();
+  };
 
-  const handleSubmit = (newAppointment) => {
-    // console.log("newAppointment>>>", newAppointment);
-    const token = localStorage.getItem("authToken");
+  const handleSubmit = (inputs) => {
+    if (appointmentToEdit) {
+      axios
+        .put(
+          `${process.env.REACT_APP_API_URL}/api/appointments/${inputs.id}`,
+          inputs,
+          getAuthHeader()
+        )
+        .then(() => initializeForm())
+        .catch((error) => console.log(error));
+    } else {
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/api/appointments`,
+          inputs,
+          getAuthHeader()
+        )
+        .then(() => initializeForm())
+        .catch((error) => console.log(error));
+    }
+  };
+
+  const deleteAppointment = () => {
     axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/api/appointments`,
-        newAppointment,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
+      .delete(
+        `${process.env.REACT_APP_API_URL}/api/appointments/${appointmentToEdit?._id}`,
+        getAuthHeader()
       )
-      .then(() => {
-        // Reset the form items
-        form.resetFields();
-
-        refreshAppointments();
-      })
+      .then(() => initializeForm())
       .catch((error) => console.log(error));
+  };
+
+  const showDeleteConfirm = () => {
+    Modal.confirm({
+      title: "Are you sure you want to delete this appointment?",
+      icon: <ExclamationCircleOutlined />,
+      // content: "Some descriptions",
+      okText: "Yes",
+      okType: "danger",
+      cancelText: "Cancel",
+      onOk() {
+        deleteAppointment();
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
   };
 
   return (
@@ -59,6 +122,9 @@ function AddAppointment({ refreshAppointments }) {
       }}
     >
       <Divider>Add Appointment</Divider>
+      <Form.Item hidden name="id">
+        <Input type="hidden" />
+      </Form.Item>
       <Form.Item
         label="Patient:"
         name="patientId"
@@ -69,11 +135,11 @@ function AddAppointment({ refreshAppointments }) {
           placeholder="Select a patient"
           optionFilterProp="children"
           showSearch
-          value={"asdfasdfasdfasdf"}
+          // value={"test"}
           filterOption={(input, option) =>
             option?.children.toLowerCase().includes(input.toLowerCase())
           }
-          disabled={false}
+          disabled={appointmentToEdit}
         >
           {patients &&
             patients.map((patient) => (
@@ -107,7 +173,7 @@ function AddAppointment({ refreshAppointments }) {
       <Form.Item
         label="Recurring?"
         className="align-left"
-        name="racurring"
+        name="recurring"
         rules={[
           { required: true, message: "Please select if it is recurring!" },
         ]}
@@ -123,11 +189,16 @@ function AddAppointment({ refreshAppointments }) {
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          {appointmentToEdit ? "Update" : "Create"}
         </Button>
+        {appointmentToEdit && (
+          <Button onClick={showDeleteConfirm} danger>
+            Delete
+          </Button>
+        )}
       </Form.Item>
     </Form>
   );
 }
 
-export default AddAppointment;
+export default AppointmentCard;
