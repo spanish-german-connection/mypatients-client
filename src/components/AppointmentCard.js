@@ -1,21 +1,21 @@
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {
+  Button,
   DatePicker,
   Divider,
-  Button,
   Form,
+  Input,
+  Modal,
   Radio,
   Select,
   Switch,
-  Input,
-  Modal,
 } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import "react-quill/dist/quill.snow.css";
 import getAuthHeader from "../utils/token";
-import "./AppointmentCard.css";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import TextEditor from "./TextEditor";
 
 function AppointmentCard({
   setShowForm,
@@ -109,8 +109,8 @@ function AppointmentCard({
   return (
     <Form
       form={form}
-      labelCol={{ span: 10 }}
-      wrapperCol={{ span: 4 }}
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 8 }}
       onFinish={handleSubmit}
       autoComplete="off"
       initialValues={{
@@ -185,7 +185,7 @@ function AppointmentCard({
         </Radio.Group>
       </Form.Item>
       <Form.Item label="Notes:" name="notes">
-        <TextArea />
+        <TextEditor />
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
         <Button type="primary" htmlType="submit">

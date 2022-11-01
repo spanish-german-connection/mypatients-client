@@ -1,9 +1,16 @@
-import React from 'react';
-import { Alert, Input, DatePicker, Divider, Button, Form, Row, Col } from "antd";
+import {
+  Alert,
+  Button,
+  Col,
+  DatePicker,
+  Divider,
+  Form,
+  Input,
+  Row,
+} from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { useState } from "react";
 import axios from "axios";
-import "./AddPatient.css";
+import React, { useState } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -11,35 +18,25 @@ function AddPatient({ refreshPatients }) {
   const [form] = Form.useForm();
   const [errorMessage, setErrorMessage] = useState(null);
 
-
   const handleSubmit = (newPatient) => {
-    const storedToken = localStorage.getItem('authToken');
+    const storedToken = localStorage.getItem("authToken");
     axios
-      .post(
-        `${API_URL}/api/patients`,
-        newPatient,
-        {
-          headers: { Authorization: `Bearer ${storedToken}` }
-        }
-      )
+      .post(`${API_URL}/api/patients`, newPatient, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then(() => {
         // Reset the form items
         form.resetFields();
 
         refreshPatients();
         setErrorMessage(null);
-
       })
       .catch((error) => {
         console.log(error);
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
-      }
-
-      );
-
+      });
   };
-
 
   return (
     <div className="AddPatient">
@@ -69,7 +66,7 @@ function AddPatient({ refreshPatients }) {
           email: "",
           phone: "",
           medications: "",
-          diagnoses: ""
+          diagnoses: "",
         }}
       >
         <Divider>Add Patient</Divider>
@@ -80,7 +77,7 @@ function AddPatient({ refreshPatients }) {
           rules={[
             {
               required: true,
-              message: 'Please provide the name!',
+              message: "Please provide the name!",
             },
           ]}
         >
@@ -94,19 +91,20 @@ function AddPatient({ refreshPatients }) {
           rules={[
             {
               required: true,
-              message: 'Please provide the surname!',
+              message: "Please provide the surname!",
             },
           ]}
         >
           <Input />
-
         </Form.Item>
 
         <Form.Item
           label="Date of birth:"
           name="dateOfBirth"
           className="align-left"
-          rules={[{ required: true, message: "Please select the date of birth!" }]}
+          rules={[
+            { required: true, message: "Please select the date of birth!" },
+          ]}
         >
           <DatePicker />
         </Form.Item>
@@ -117,17 +115,16 @@ function AddPatient({ refreshPatients }) {
           className="align-left"
           rules={[
             {
-              type: 'email',
-              message: 'The input is not valid email address!',
+              type: "email",
+              message: "The input is not valid email address!",
             },
             {
               required: true,
-              message: 'Please input the email address!',
+              message: "Please input the email address!",
             },
           ]}
         >
           <Input />
-
         </Form.Item>
 
         <Form.Item
@@ -137,12 +134,11 @@ function AddPatient({ refreshPatients }) {
           rules={[
             {
               required: true,
-              message: 'Please provide the phone number!',
+              message: "Please provide the phone number!",
             },
           ]}
         >
           <Input />
-
         </Form.Item>
 
         <Form.Item
@@ -152,7 +148,8 @@ function AddPatient({ refreshPatients }) {
           rules={[
             {
               required: true,
-              message: 'Please provide a diagnosis or a provisional indication!',
+              message:
+                "Please provide a diagnosis or a provisional indication!",
             },
           ]}
         >
@@ -164,7 +161,6 @@ function AddPatient({ refreshPatients }) {
           name="medications"
           className="align-left"
         >
-
           <TextArea />
         </Form.Item>
 
@@ -173,7 +169,6 @@ function AddPatient({ refreshPatients }) {
             Submit
           </Button>
         </Form.Item>
-
       </Form>
     </div>
   );
