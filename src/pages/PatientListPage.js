@@ -44,8 +44,6 @@ function PatientListPage() {
     }
   }
 
-
-
   return (
     <div>
 
@@ -67,7 +65,7 @@ function PatientListPage() {
         return (
 
           <div key={patient._id}>
-            <h3>Name: {patient.name}, {patient.surname}</h3>
+            <h3>{patient.name}, {patient.surname}</h3>
             <p>Date of birth: {`${moment(patient.dateOfBirth).format(
               "DD-MMM-YYYY"
             )}`}</p>

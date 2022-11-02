@@ -2,8 +2,16 @@ import axios from 'axios';
 import moment from "moment/moment";
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Button } from "antd";
-
+import getAuthHeader from "../utils/token";
+import "./PatientDetailsPage.css";
+import {
+    Button,
+    Col,
+    Divider,
+    Form,
+    Row,
+    Typography,
+} from "antd";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -12,15 +20,14 @@ function PatientDetailsPage() {
     const { patientId } = useParams();
 
     useEffect(() => {
-        getPatientDetails();
+        fetchPatient();
     }, []);
 
-    const getPatientDetails = () => {
-        const storedToken = localStorage.getItem('authToken');
+    const fetchPatient = () => {
         axios
             .get(
                 `${API_URL}/api/patients/${patientId}`,
-                { headers: { Authorization: `Bearer ${storedToken}` } }
+                getAuthHeader()
             )
             .then(response => {
                 const onePatient = response.data;
@@ -33,28 +40,58 @@ function PatientDetailsPage() {
         <div className="PatientDetails">
             {patient && (
                 <>
-                    <h1>{patient.surname} {patient.name}</h1>
-                    <p>Date of birth: <strong>
-                        {`${moment(patient.dateOfBirth).format(
-                            "DD-MMM-YYYY"
-                        )}`}
-                    </strong></p>
-                    <p>Email: <strong>{patient.email}</strong></p>
-                    <p>Phone: <strong>{patient.phone}</strong></p>
-                    <p>Therapist: <strong>{patient.therapist.name}</strong></p>
-                    <p>Diagnosis: <strong>{patient.diagnoses}</strong></p>
-                    <p>Medications: <strong>{patient.medications}</strong></p>
+                    <Divider>Patient details</Divider>
+                    <Row className="row-patient-detail">
+                        {/* <Col className='ctn' span="4" offset="10"> */}
+                        <Col>
+
+                            <Typography>
+                                <pre>Name: {patient.name}</pre>
+                            </Typography>
+                            <Typography>
+                                <pre>Surname: {patient.surname}</pre>
+                            </Typography>
+                            <Typography>
+                                <pre>Date of birth:   {moment(patient.dateOfBirth).format(
+                                    "DD-MMM-YYYY"
+                                )}</pre>
+                            </Typography>
+                            <Typography>
+                                <pre>Therapist:   {patient.therapist.name}</pre>
+                            </Typography>
+                            <Typography>
+                                <pre> Email-Address:  {patient.email}</pre>
+                            </Typography>
+                        </Col>
+                    </Row>
+                    <Row className="row-patient-detail">
+                        <Col>
+
+                            <Typography>
+                                <pre>Diagnoses:   {patient.diagnoses}</pre>
+                            </Typography>
+                            </Col>
+                    </Row>
+                    <Row className="row-patient-detail">
+                        <Col>
+
+
+                            <Typography>
+                                <pre> Medications:   {patient.medications}</pre>
+                            </Typography>
+                        </Col>
+                    </Row>
+
+                    <Link to={`/patient/edit/${patientId}`} >
+                        <Button type="primary">Edit Patient</Button>
+                    </Link>
+
+                    <Link to="/patients">
+                        <Button>Back to Patients</Button>
+                    </Link>
+
                 </>
             )}
-            <Link to={`/patient/edit/${patientId}`}>
-                <Button>Edit Patient</Button>
-            </Link>
-
-            <Link to="/patients">
-                <Button>Back to Patients</Button>
-            </Link>
-
-
         </div>
     )
 }
