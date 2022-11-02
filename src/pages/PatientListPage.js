@@ -13,6 +13,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 function PatientListPage() {
   const [patients, setPatients] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [btnType, setBtnType] = useState("primary");
 
   const getAllPatients = () => {
     // Get the token from the localStorage
@@ -31,13 +32,22 @@ function PatientListPage() {
     getAllPatients();
   }, []);
 
-  const showHideForm = () => setShowForm((prevState) => !prevState);
+
+  const showHideForm = () => {
+    setShowForm((prevState) => {
+      return !prevState;
+    })
+    if (showForm) {
+      setBtnType("primary");
+    } else {
+      setBtnType("")
+    }
+  }
+
 
 
   return (
     <div>
-      <h1>Patients</h1>
-
 
       {showForm && (
         <AddPatient refreshPatients={getAllPatients} />
@@ -45,7 +55,7 @@ function PatientListPage() {
 
       <Row>
         <Col span={8} offset={8}>
-          <Button value="large" onClick={showHideForm}>
+          <Button type={btnType} size="large" onClick={showHideForm}>
             {showForm ? "Hide Form" : "Add new patient"}
           </Button>
         </Col>
@@ -59,11 +69,11 @@ function PatientListPage() {
           <div key={patient._id}>
             <h3>Name: {patient.name}, {patient.surname}</h3>
             <p>Date of birth: {`${moment(patient.dateOfBirth).format(
-                "DD-MMM-YYYY"
-              )}`}</p>
+              "DD-MMM-YYYY"
+            )}`}</p>
 
             <Link to={`/patients/${patient._id}`}>
-              <button>Details</button>
+              <Button>Details</Button>
             </Link>
 
           </div>

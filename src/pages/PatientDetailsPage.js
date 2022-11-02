@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from "moment/moment";
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Button } from "antd";
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -38,7 +39,6 @@ function PatientDetailsPage() {
                             "DD-MMM-YYYY"
                         )}`}
                     </strong></p>
-                    <p>Date of birth: </p>
                     <p>Email: <strong>{patient.email}</strong></p>
                     <p>Phone: <strong>{patient.phone}</strong></p>
                     <p>Therapist: <strong>{patient.therapist.name}</strong></p>
@@ -46,14 +46,14 @@ function PatientDetailsPage() {
                     <p>Medications: <strong>{patient.medications}</strong></p>
                 </>
             )}
+            <Link to={`/patient/edit/${patientId}`}>
+                <Button>Edit Patient</Button>
+            </Link>
 
             <Link to="/patients">
-                <button>Back to Patients</button>
+                <Button>Back to Patients</Button>
             </Link>
 
-            <Link to={`/patient/edit/${patientId}`}>
-                <button>Edit Patient</button>
-            </Link>
 
         </div>
     )
