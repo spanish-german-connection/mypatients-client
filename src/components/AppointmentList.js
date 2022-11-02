@@ -19,9 +19,9 @@ function AppointmentList({ appointments, editAppointment }) {
                 width: "50%",
               }}
             >
-              <h4>{`${moment(appointment.date).format(
+              <h6>{`${moment(appointment.date).format(
                 "DD-MMM-YYYY - HH:mm a"
-              )}`}</h4>
+              )}`}</h6>
               <p>
                 {appointment.patient?.name + " " + appointment.patient?.surname}
               </p>

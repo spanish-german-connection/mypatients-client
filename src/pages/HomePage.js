@@ -1,6 +1,7 @@
 import { Carousel, Image } from "antd";
 import photoBeach1 from "../images/beach-chair.jpg";
 import photoBeach2 from "../images/beach-sand.jpeg";
+import kintsugi from "../images/kintsugi.jpg";
 import therapy from "../images/therapy.jpeg";
 function HomePage() {
   const contentStyle = {
@@ -48,22 +49,35 @@ function HomePage() {
           <div className="carousel-item active">
             <img src={photoBeach1} className="d-block " alt="..." />
             <div className="carousel-caption d-none d-md-block">
-              <h5>Gain a new life.</h5>
-              {/* <p>Some representative placeholder content for the first slide.</p> */}
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img src={photoBeach2} className="d-block " alt="..." />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Happiness begins here.</h5>
-              {/* <p>Some representative placeholder content for the second slide.</p> */}
+              <h1>
+                <strong>Happiness begins here.</strong>
+              </h1>
+              <p>
+                Therapy space and regular therapy groups insite and online. Find
+                out more details and upcoming events.
+              </p>
             </div>
           </div>
           <div className="carousel-item">
             <img src={therapy} className="d-block " alt="..." />
             <div className="carousel-caption d-none d-md-block">
-              <h5>Caring with a heart.</h5>
-              {/* <p>Some representative placeholder content for the third slide.</p> */}
+              <h1>
+                <strong>Caring with a heart.</strong>
+              </h1>
+              <p></p>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img src={kintsugi} className="d-block " alt="..." />
+            <div className="carousel-caption d-none d-md-block">
+              <h1>
+                <strong>Gain a new life.</strong>
+              </h1>
+              <p>
+                A break is something to remember, something of value, a way to
+                make the piece more beautiful, rather than something to
+                disguise.
+              </p>
             </div>
           </div>
         </div>
@@ -92,8 +106,10 @@ function HomePage() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div class="mt-4"></div>
       {/* Footer */}
+      <div class="mt-4">
+        <br />
+      </div>
 
       <div class="footer text-center">
         <footer class="page-footer font-small teal pt-4">

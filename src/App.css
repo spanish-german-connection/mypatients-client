@@ -3,9 +3,23 @@
 }
 
 .carousel-item > img {
-  min-width: 60%;
-  height: 40rem;
+  width: 60%;
+  height: 45rem;
   margin: 0 auto;
+  filter: brightness(60%);
+}
+
+.carousel-caption > h1 {
+  font-family: Playfair Display;
+  color: white;
+  font-size: 45px;
+  line-height: 50px;
+}
+
+.carousel-caption > p {
+  font-family: Lora;
+  font-size: 17px;
+  line-height: 25px;
 }
 
 .align-left {
