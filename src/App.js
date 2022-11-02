@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import PatientDetailsPage from "./pages/PatientDetailsPage";
 import PatientListPage from "./pages/PatientListPage";
+import EditPatientPage from "./pages/EditPatientPage";
 
 function App() {
   console.clear();
@@ -37,6 +38,14 @@ function App() {
               <PatientDetailsPage />
             </IsPrivate>
           }
+        />
+
+        <Route
+          path="/patient/edit/:patientId"
+          element={
+            <IsPrivate>
+              <EditPatientPage />
+            </IsPrivate>}
         />
 
         <Route

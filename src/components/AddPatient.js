@@ -65,8 +65,8 @@ function AddPatient({ refreshPatients }) {
           dateOfBirth: "",
           email: "",
           phone: "",
-          medications: "",
           diagnoses: "",
+          medications: ""
         }}
       >
         <Divider>Add Patient</Divider>

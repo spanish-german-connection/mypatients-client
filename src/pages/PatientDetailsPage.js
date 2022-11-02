@@ -38,7 +38,6 @@ function PatientDetailsPage() {
                             "DD-MMM-YYYY"
                         )}`}
                     </strong></p>
-                    <p>Date of birth: </p>
                     <p>Email: <strong>{patient.email}</strong></p>
                     <p>Phone: <strong>{patient.phone}</strong></p>
                     <p>Therapist: <strong>{patient.therapist.name}</strong></p>
