@@ -3,9 +3,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./TextEditor.css";
 const toolbarOptions = [
-  // [{ font: [] }],
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  ["bold", "italic", "underline"],
+  [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+  ["bold", "italic", "underline"], // toggled buttons
   [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
   // ["clean"],
 ];

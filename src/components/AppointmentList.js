@@ -25,8 +25,7 @@ function AppointmentList({ appointments, editAppointment }) {
               <p>
                 {appointment.patient?.name + " " + appointment.patient?.surname}
               </p>
-              {parse(appointment.notes.slice(0, 32))}
-              <br />
+              {/* {parse(appointment.notes).slice(0, 32)} */}
               <Button
                 onClick={() => {
                   editAppointment(appointment);
