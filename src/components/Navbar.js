@@ -21,7 +21,9 @@ function Navbar() {
           <Link to="/appointments">
             <Button size="large">Appointments</Button>
           </Link>
-          <Button size="large" onClick={logOutUser}>Logout</Button>
+          <Button size="large" onClick={logOutUser}>
+            Logout
+          </Button>
           <span>{user && user.name}</span>
         </>
       )}

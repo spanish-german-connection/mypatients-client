@@ -62,7 +62,7 @@ function HomePage() {
             <img src={therapy} className="d-block " alt="..." />
             <div className="carousel-caption d-none d-md-block">
               <h1>
-                <strong>Caring with a heart.</strong>
+                <strong>Caring with heart.</strong>
               </h1>
               <p></p>
             </div>
