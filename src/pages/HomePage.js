@@ -107,36 +107,36 @@ function HomePage() {
         </button>
       </div>
       {/* Footer */}
-      <div class="mt-4">
+      <div className="mt-4">
         <br />
       </div>
 
-      <div class="footer text-center">
-        <footer class="page-footer font-small teal pt-4">
-          <div class="container-fluid text-center text-md-left">
-            <div class="row">
-              <hr class="clearfix w-100 d-md-none pb-3" />
+      <div className="footer text-center">
+        <footer className="page-footer font-small teal pt-4">
+          <div className="container-fluid text-center text-md-left">
+            <div className="row">
+              <hr className="clearfix w-100 d-md-none pb-3" />
 
-              <div class="col-md-4 mb-md-0 mb-3 footer-text f-two">
-                <p class="text-uppercase font-weight-bold f-title">
+              <div className="col-md-4 mb-md-0 mb-3 footer-text f-two">
+                <p className="text-uppercase font-weight-bold f-title">
                   Julian Bethge
                 </p>
                 <p>Web Development</p>
                 <p>julbethge@gmail.com</p>
               </div>
 
-              <div class="col-md-4 mt-md-0 mt-3 footer-text f-one">
-                <p class="text-uppercase font-weight-bold f-title">
+              <div className="col-md-4 mt-md-0 mt-3 footer-text f-one">
+                <p className="text-uppercase font-weight-bold f-title">
                   MyPatients
                 </p>
                 <p>mypatients.com</p>
                 <p>Offices: Berlin | Coruña </p>
               </div>
 
-              <hr class="clearfix w-100 d-md-none pb-3" />
+              <hr className="clearfix w-100 d-md-none pb-3" />
 
-              <div class="col-md-4 mt-md-0 mt-3 footer-text f-three">
-                <p class="text-uppercase font-weight-bold f-title">
+              <div className="col-md-4 mt-md-0 mt-3 footer-text f-three">
+                <p className="text-uppercase font-weight-bold f-title">
                   Gabriel Gomez
                 </p>
                 <p>Web Development</p>
@@ -145,7 +145,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div class="footer-copyright text-center py-3">
+          <div className="footer-copyright text-center py-3">
             © 2022 Copyright:
             <a href="/"> mypatients.com</a>
           </div>
