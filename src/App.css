@@ -11,3 +11,18 @@
 .align-left {
   text-align: left;
 }
+
+.footer {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.699);
+  max-width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  filter: brightness(80%);
+}
+
+.footer-text {
+  font-size: 0.7vw;
+  text-align: center;
+  line-height: 0.9em;
+}
