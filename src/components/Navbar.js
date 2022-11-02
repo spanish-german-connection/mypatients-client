@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import "./Navbar.css";
+import { Button } from "antd";
 
 function Navbar() {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -9,18 +10,18 @@ function Navbar() {
   return (
     <nav>
       <Link to="/">
-        <button>Home</button>
+        <Button size="large">Home</Button>
       </Link>
 
       {isLoggedIn && (
         <>
           <Link to="/patients">
-            <button>Patients</button>
+            <Button size="large">Patients</Button>
           </Link>
           <Link to="/appointments">
-            <button>Appointments</button>
+            <Button size="large">Appointments</Button>
           </Link>
-          <button onClick={logOutUser}>Logout</button>
+          <Button size="large" onClick={logOutUser}>Logout</Button>
           <span>{user && user.name}</span>
         </>
       )}
@@ -28,10 +29,10 @@ function Navbar() {
       {!isLoggedIn && (
         <>
           <Link to="/signup">
-            <button>SignUp</button>
+            <Button size="large">SignUp</Button>
           </Link>
           <Link to="/login">
-            <button>Login</button>
+            <Button size="large">Login</Button>
           </Link>
         </>
       )}

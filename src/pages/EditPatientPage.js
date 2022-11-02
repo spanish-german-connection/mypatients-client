@@ -47,7 +47,7 @@ function EditPatientPage(props) {
                 console.log(error);
                 const errorDescription = error.response.data.message;
                 setErrorMessage(errorDescription);
-              });
+            });
     }
 
     const setFields = (onePatient) => {
@@ -77,7 +77,7 @@ function EditPatientPage(props) {
                 console.log(error);
                 const errorDescription = error.response.data.message;
                 setErrorMessage(errorDescription);
-              });
+            });
     };
 
 
@@ -202,6 +202,17 @@ function EditPatientPage(props) {
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
+
+                    <Link to={`/patients/${patientId}`}>
+                        <Button>
+                            Cancel
+                        </Button>
+                    </Link>
+
+
+
+
+
                 </Form.Item>
             </Form>
 
