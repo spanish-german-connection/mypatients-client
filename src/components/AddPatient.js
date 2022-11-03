@@ -42,7 +42,7 @@ function AddPatient({ refreshPatients }) {
     <div className="AddPatient">
       {errorMessage && (
         <Row>
-          <Col span="4" offset="10">
+          <Col span="8" offset="8">
             <Alert
               message="There was an error"
               description={errorMessage}
@@ -55,8 +55,8 @@ function AddPatient({ refreshPatients }) {
 
       <Form
         form={form}
-        labelCol={{ span: 10 }}
-        wrapperCol={{ span: 4 }}
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 8 }}
         onFinish={handleSubmit}
         autoComplete="off"
         initialValues={{
