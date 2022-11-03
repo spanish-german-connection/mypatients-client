@@ -1,14 +1,17 @@
 .row-patient-detail {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+}
+
+.pd-column-label {
+  text-align: right;
+  margin-top: 15px;
 }
 
 .row-patient-detail pre {
   margin: 0.25rem 10rem;
 }
-
-
 
 .align-left {
   text-align: left;
@@ -23,7 +26,11 @@
   display: flex;
 }
 
-.pd-flex pre{
-    width: 120%;
-    margin: 0.5rem;
+.pd-flex pre {
+  width: 120%;
+  margin: 0.5rem;
+}
+
+.pd-large-text {
+  min-height: 50px;
 }
