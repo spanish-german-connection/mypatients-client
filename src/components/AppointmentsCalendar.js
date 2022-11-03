@@ -1,11 +1,10 @@
-import React, { Component, useEffect, useState } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import axios from "axios";
 import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "./AppointmentsCalendar.css";
-import axios from "axios";
 import getAuthHeader from "../utils/token";
 
 moment.locale("en", {

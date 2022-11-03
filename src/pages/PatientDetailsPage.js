@@ -1,10 +1,10 @@
+import { Button, Col, Divider, Row, Typography } from "antd";
 import axios from "axios";
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import getAuthHeader from "../utils/token";
 import "./PatientDetailsPage.css";
-import { Button, Col, Divider, Form, Row, Typography } from "antd";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -31,65 +31,67 @@ function PatientDetailsPage() {
       {patient && (
         <>
           <Divider>Patient details</Divider>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Name:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">{patient.name}</pre>
+                <pre className="pd-data align-left">{patient.name}</pre>
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Surname:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">{patient.surname}</pre>
+                <pre className="pd-data align-left">{patient.surname}</pre>
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Date of birth:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">
+                <pre className="pd-data align-left">
                   {moment(patient.dateOfBirth).format("DD-MMM-YYYY")}
                 </pre>
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Therapist:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">{patient.therapist.name}</pre>
+                <pre className="pd-data align-left">
+                  {patient.therapist.name}
+                </pre>
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Email-Address:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">{patient.email}</pre>
+                <pre className="pd-data align-left">{patient.email}</pre>
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Diagnoses:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left">
+                <pre className="pd-data align-left">
                   <span
                     className="pd-large-text"
                     dangerouslySetInnerHTML={{
@@ -100,13 +102,13 @@ function PatientDetailsPage() {
               </Typography>
             </Col>
           </Row>
-          <Row className="row-patient-detail">
+          <Row>
             <Col span="8" offset="0" className="pd-column-label">
               <span className="pd-label">Medications:</span>
             </Col>
             <Col span="8">
               <Typography className="pd-flex">
-                <pre className="align-left pd-large-text">
+                <pre className="pd-data align-left pd-large-text">
                   <span
                     dangerouslySetInnerHTML={{
                       __html: patient.medications

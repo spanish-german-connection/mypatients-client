@@ -8,7 +8,6 @@ import {
   Input,
   Row,
 } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import React, { useState } from "react";
 import TextEditor from "./TextEditor";
@@ -41,7 +40,6 @@ function AddPatient({ refreshPatients }) {
         setErrorMessage(errorDescription);
       });
   };
-
 
   return (
     <div className="AddPatient">
@@ -84,7 +82,7 @@ function AddPatient({ refreshPatients }) {
           email: "",
           phone: "",
           diagnoses: "",
-          medications: ""
+          medications: "",
         }}
       >
         <Divider>Add Patient</Divider>

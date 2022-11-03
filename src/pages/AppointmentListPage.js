@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Radio, Row } from "antd";
+import { Button, Col, Divider, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AppointmentCard from "../components/AppointmentCard";
