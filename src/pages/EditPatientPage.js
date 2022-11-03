@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
+import TextArea from "antd/lib/input/TextArea";
+import getAuthHeader from "../utils/token";
 import {
     Alert,
     Button,
@@ -13,34 +15,31 @@ import {
     Input,
     Row,
 } from "antd";
-import TextArea from "antd/lib/input/TextArea";
-import getAuthHeader from "../utils/token";
-
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function EditPatientPage(props) {
-
+function EditPatientPage() {
     const [form] = Form.useForm();
-    const [errorMessage, setErrorMessage] = useState(null);
-
-    const navigate = useNavigate();
     const { patientId } = useParams();
+    const [patient, setPatient] = useState(null);
+    
+    const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchPatient();
-    }, [patientId]);
+    }, []);
 
 
     const fetchPatient = () => {
-        const storedToken = localStorage.getItem('authToken');
         axios
             .get(
                 `${API_URL}/api/patients/${patientId}`,
-                { headers: { Authorization: `Bearer ${storedToken}` } }
+                getAuthHeader()
             )
             .then((response) => {
                 const onePatient = response.data;
+                setPatient(onePatient);
                 setFields(onePatient);
             })
             .catch((error) => {
@@ -55,6 +54,7 @@ function EditPatientPage(props) {
             name: onePatient.name,
             surname: onePatient.surname,
             dateOfBirth: moment(onePatient.dateOfBirth),
+            therapist: onePatient.therapist.name,
             email: onePatient.email,
             phone: onePatient.phone,
             diagnoses: onePatient.diagnoses,
@@ -62,12 +62,13 @@ function EditPatientPage(props) {
         });
     }
 
-
     const handleSubmit = (inputs) => {
+        const updatedPatient = inputs;
+        updatedPatient.therapist = patient.therapist;
         axios
             .put(
                 `${API_URL}/api/patients/${patientId}`,
-                inputs,
+                updatedPatient,
                 getAuthHeader()
             )
             .then((response) => {
@@ -79,7 +80,6 @@ function EditPatientPage(props) {
                 setErrorMessage(errorDescription);
             });
     };
-
 
     return (
         <div className="EditPatientPage">
@@ -141,6 +141,17 @@ function EditPatientPage(props) {
                     ]}
                 >
                     <DatePicker />
+                </Form.Item>
+
+                <Form.Item
+                    label="Therapist:"
+                    name="therapist"
+                    className="align-left"
+                    
+                >
+                    <Input 
+                        disabled={true}
+                    />
                 </Form.Item>
 
                 <Form.Item
@@ -208,14 +219,8 @@ function EditPatientPage(props) {
                             Cancel
                         </Button>
                     </Link>
-
-
-
-
-
                 </Form.Item>
             </Form>
-
         </div>
     );
 }

@@ -1,0 +1,11 @@
+.row-patient-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+ .row-patient-detail pre {
+    margin: 0.25rem 10rem;
+}
