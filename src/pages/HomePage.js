@@ -148,7 +148,7 @@ function HomePage() {
 
           <div className="footer-copyright text-center py-3">
             © 2022 Copyright:
-            <a href="/">https://mypatients.netlify.app/</a>
+            <a href="https://mypatients.netlify.app"> mypatients.netlify.app</a>
           </div>
         </footer>
       </div>
