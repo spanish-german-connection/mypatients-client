@@ -11,6 +11,7 @@ import {
   Radio,
   Row,
   Select,
+  Space,
   Switch,
 } from "antd";
 import axios from "axios";
@@ -64,7 +65,6 @@ function AppointmentCard({
   };
 
   const handleSubmit = (inputs) => {
-    console.log("inputs>>>", inputs);
     if (appointmentToEdit) {
       axios
         .put(
@@ -195,7 +195,7 @@ function AppointmentCard({
           className="align-left"
           name="date"
           rules={[{ required: true, message: "Please select a date!" }]}
-          allowClear="false"
+          // allowClear={false}
         >
           <DatePicker
             showTime={{
@@ -233,14 +233,25 @@ function AppointmentCard({
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
+<<<<<<< Updated upstream
           <Button type="primary" htmlType="submit" className='btn-margin'>
             {appointmentToEdit ? "Update" : "Create"}
           </Button>
           {appointmentToEdit && (
             <Button  onClick={showDeleteConfirm} danger className='btn-margin'>
               Delete
+=======
+          <Space>
+            <Button type="primary" htmlType="submit">
+              {appointmentToEdit ? "Update" : "Create"}
+>>>>>>> Stashed changes
             </Button>
-          )}
+            {appointmentToEdit && (
+              <Button onClick={showDeleteConfirm} danger>
+                Delete
+              </Button>
+            )}
+          </Space>
         </Form.Item>
       </Form>
     </>

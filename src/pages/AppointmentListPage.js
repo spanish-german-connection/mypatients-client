@@ -1,8 +1,8 @@
-import { Col, Button, Row } from "antd";
+import { Button, Col, Divider, Radio, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AppointmentCard from "../components/AppointmentCard";
-import AppointmentList from "../components/AppointmentList";
+import AppointmentsCalendar from "../components/AppointmentsCalendar";
 import getAuthHeader from "../utils/token";
 
 function AppointmentListPage() {
@@ -32,6 +32,7 @@ function AppointmentListPage() {
   const editAppointment = (appointment) => {
     setAppointmentToEdit(appointment);
     setShowForm(true);
+    setBtnType("");
   };
 
   return (
@@ -51,10 +52,13 @@ function AppointmentListPage() {
         </Col>
       </Row>
       <br />
-      <AppointmentList
+      <Divider>Appointments calendar</Divider>
+      <AppointmentsCalendar
         appointments={appointments}
+        refreshAppointments={fetchAppointments}
         editAppointment={editAppointment}
-      ></AppointmentList>
+        showForm={showForm}
+      ></AppointmentsCalendar>
     </div>
   );
 }
