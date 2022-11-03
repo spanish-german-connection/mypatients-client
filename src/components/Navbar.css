@@ -17,6 +17,6 @@ nav {
   min-width: 50px;
   margin: 5px;
   font-family: Lora;
-  font-size: 18px !important;
+  /* font-size: 18px !important; */
   font-weight: 700 !important;
 }

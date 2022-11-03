@@ -1,8 +1,9 @@
-.ql-container {
-  height: unset;
-  min-height: 200px;
-}
-
 .ql-toolbar.ql-snow {
   padding: 0px;
+}
+
+.ql-editor {
+  padding: 5px;
+  height: unset;
+  min-height: 200px;
 }
