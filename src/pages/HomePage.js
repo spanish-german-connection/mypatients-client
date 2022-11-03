@@ -53,8 +53,8 @@ function HomePage() {
                 <strong>Happiness begins here.</strong>
               </h1>
               <p>
-                Therapy space and regular therapy groups insite and online. Find
-                out more details and upcoming events.
+                Therapy space and regular therapy groups in-person and online.
+                Find out more details and upcoming events.
               </p>
             </div>
           </div>
@@ -75,8 +75,7 @@ function HomePage() {
               </h1>
               <p>
                 A break is something to remember, something of value, a way to
-                make the piece more beautiful, rather than something to
-                disguise.
+                make a piece more beautiful, rather than something to disguise.
               </p>
             </div>
           </div>
@@ -122,14 +121,14 @@ function HomePage() {
                   Julian Bethge
                 </p>
                 <p>Web Development</p>
-                <p>julbethge@gmail.com</p>
+                <a href="mailto:julbethge@gmail.com">julbethge@gmail.com</a>
               </div>
 
               <div className="col-md-4 mt-md-0 mt-3 footer-text f-one">
                 <p className="text-uppercase font-weight-bold f-title">
-                  MyPatients
+                  MyPatients App
                 </p>
-                <p>mypatients.com</p>
+                <p>Therapy session management website</p>
                 <p>Offices: Berlin | Coruña </p>
               </div>
 
@@ -140,14 +139,16 @@ function HomePage() {
                   Gabriel Gomez
                 </p>
                 <p>Web Development</p>
-                <p>ggomez.estevez@gmail.com</p>
+                <a href="mailto:ggomez.estevez@gmail.com">
+                  ggomez.estevez@gmail.com
+                </a>
               </div>
             </div>
           </div>
 
           <div className="footer-copyright text-center py-3">
             © 2022 Copyright:
-            <a href="/"> mypatients.com</a>
+            <a href="/">https://mypatients.netlify.app/</a>
           </div>
         </footer>
       </div>
