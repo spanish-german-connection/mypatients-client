@@ -18,6 +18,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 function AddPatient({ refreshPatients }) {
   const [form] = Form.useForm();
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const handleSubmit = (newPatient) => {
     const storedToken = localStorage.getItem("authToken");
@@ -31,13 +32,16 @@ function AddPatient({ refreshPatients }) {
 
         refreshPatients();
         setErrorMessage(null);
+        setSuccessMessage("The patient was successfully created");
       })
       .catch((error) => {
         console.log(error);
         const errorDescription = error.response.data.message;
+        setSuccessMessage(null);
         setErrorMessage(errorDescription);
       });
   };
+
 
   return (
     <div className="AddPatient">
@@ -48,6 +52,19 @@ function AddPatient({ refreshPatients }) {
               message="There was an error"
               description={errorMessage}
               type="error"
+              showIcon
+            />
+          </Col>
+        </Row>
+      )}
+
+      {successMessage && (
+        <Row>
+          <Col span="8" offset="8">
+            <Alert
+              message="Success"
+              description={successMessage}
+              type="success"
               showIcon
             />
           </Col>
@@ -154,7 +171,7 @@ function AddPatient({ refreshPatients }) {
             },
           ]}
         >
-          <TextEditor/>
+          <TextEditor />
         </Form.Item>
 
         <Form.Item
@@ -162,7 +179,7 @@ function AddPatient({ refreshPatients }) {
           name="medications"
           className="align-left"
         >
-          <TextEditor/>
+          <TextEditor />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
