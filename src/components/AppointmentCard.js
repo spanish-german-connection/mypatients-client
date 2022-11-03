@@ -162,7 +162,7 @@ function AppointmentCard({
           notes: "",
         }}
       >
-        <Divider>Add Appointment</Divider>
+        <Divider>{appointmentToEdit ? "Edit" : "Add"} Appointment</Divider>
         <Form.Item hidden name="id">
           <Input type="hidden" />
         </Form.Item>
