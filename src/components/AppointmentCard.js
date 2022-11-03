@@ -233,18 +233,9 @@ function AppointmentCard({
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
-<<<<<<< Updated upstream
-          <Button type="primary" htmlType="submit" className='btn-margin'>
-            {appointmentToEdit ? "Update" : "Create"}
-          </Button>
-          {appointmentToEdit && (
-            <Button  onClick={showDeleteConfirm} danger className='btn-margin'>
-              Delete
-=======
           <Space>
             <Button type="primary" htmlType="submit">
               {appointmentToEdit ? "Update" : "Create"}
->>>>>>> Stashed changes
             </Button>
             {appointmentToEdit && (
               <Button onClick={showDeleteConfirm} danger>
