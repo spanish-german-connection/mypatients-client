@@ -3,10 +3,10 @@ body {
 }
 
 nav {
-  background: #4267B2;
+  background: #192847ee;
   color: white;
   padding: 0px 20px;
-  box-shadow: 0px 1px 2px #898F9C;
+  box-shadow: 0px 1px 2px #898f9c;
   width: 100%;
   margin-bottom: 15px;
   padding: 5px;
@@ -24,4 +24,5 @@ button {
   min-width: 50px;
   margin: 5px;
   font-size: 18px;
+  font-family: Lora;
 }

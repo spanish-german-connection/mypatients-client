@@ -53,8 +53,8 @@ function HomePage() {
                 <strong>Happiness begins here.</strong>
               </h1>
               <p>
-                Therapy space and regular therapy groups insite and online. Find
-                out more details and upcoming events.
+                Therapy space and regular therapy groups in-person and online.
+                Find out more details and upcoming events.
               </p>
             </div>
           </div>
@@ -62,7 +62,7 @@ function HomePage() {
             <img src={therapy} className="d-block " alt="..." />
             <div className="carousel-caption d-none d-md-block">
               <h1>
-                <strong>Caring with a heart.</strong>
+                <strong>Caring with heart.</strong>
               </h1>
               <p></p>
             </div>
@@ -75,8 +75,7 @@ function HomePage() {
               </h1>
               <p>
                 A break is something to remember, something of value, a way to
-                make the piece more beautiful, rather than something to
-                disguise.
+                make a piece more beautiful, rather than something to disguise.
               </p>
             </div>
           </div>
@@ -107,47 +106,49 @@ function HomePage() {
         </button>
       </div>
       {/* Footer */}
-      <div class="mt-4">
+      <div className="mt-4">
         <br />
       </div>
 
-      <div class="footer text-center">
-        <footer class="page-footer font-small teal pt-4">
-          <div class="container-fluid text-center text-md-left">
-            <div class="row">
-              <hr class="clearfix w-100 d-md-none pb-3" />
+      <div className="footer text-center">
+        <footer className="page-footer font-small teal pt-4">
+          <div className="container-fluid text-center text-md-left">
+            <div className="row">
+              <hr className="clearfix w-100 d-md-none pb-3" />
 
-              <div class="col-md-4 mb-md-0 mb-3 footer-text f-two">
-                <p class="text-uppercase font-weight-bold f-title">
+              <div className="col-md-4 mb-md-0 mb-3 footer-text f-two">
+                <p className="text-uppercase font-weight-bold f-title">
                   Julian Bethge
                 </p>
                 <p>Web Development</p>
-                <p>julbethge@gmail.com</p>
+                <a href="mailto:julbethge@gmail.com">julbethge@gmail.com</a>
               </div>
 
-              <div class="col-md-4 mt-md-0 mt-3 footer-text f-one">
-                <p class="text-uppercase font-weight-bold f-title">
-                  MyPatients
+              <div className="col-md-4 mt-md-0 mt-3 footer-text f-one">
+                <p className="text-uppercase font-weight-bold f-title">
+                  MyPatients App
                 </p>
-                <p>mypatients.com</p>
+                <p>Therapy session management website</p>
                 <p>Offices: Berlin | Coruña </p>
               </div>
 
-              <hr class="clearfix w-100 d-md-none pb-3" />
+              <hr className="clearfix w-100 d-md-none pb-3" />
 
-              <div class="col-md-4 mt-md-0 mt-3 footer-text f-three">
-                <p class="text-uppercase font-weight-bold f-title">
+              <div className="col-md-4 mt-md-0 mt-3 footer-text f-three">
+                <p className="text-uppercase font-weight-bold f-title">
                   Gabriel Gomez
                 </p>
                 <p>Web Development</p>
-                <p>ggomez.estevez@gmail.com</p>
+                <a href="mailto:ggomez.estevez@gmail.com">
+                  ggomez.estevez@gmail.com
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="footer-copyright text-center py-3">
+          <div className="footer-copyright text-center py-3">
             © 2022 Copyright:
-            <a href="/"> mypatients.com</a>
+            <a href="/">https://mypatients.netlify.app/</a>
           </div>
         </footer>
       </div>
