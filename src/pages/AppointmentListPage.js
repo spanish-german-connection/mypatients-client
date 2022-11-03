@@ -1,4 +1,4 @@
-import { Col, Radio, Row } from "antd";
+import { Col, Button, Row } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import AppointmentCard from "../components/AppointmentCard";
@@ -9,6 +9,7 @@ function AppointmentListPage() {
   const [appointments, setAppointments] = useState(null);
   const [appointmentToEdit, setAppointmentToEdit] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [btnType, setBtnType] = useState("primary");
 
   const fetchAppointments = () => {
     const token = localStorage.getItem("authToken");
@@ -25,6 +26,7 @@ function AppointmentListPage() {
   const showHideForm = () => {
     setAppointmentToEdit(null);
     setShowForm((prevState) => !prevState);
+    showForm ? setBtnType("primary") : setBtnType("");
   };
 
   const editAppointment = (appointment) => {
@@ -43,9 +45,9 @@ function AppointmentListPage() {
       )}
       <Row>
         <Col span={8} offset={8}>
-          <Radio.Button value="large" onClick={showHideForm}>
-            {showForm ? "Hide Form" : "Add New Appointment"}
-          </Radio.Button>
+          <Button type={btnType} size="large" onClick={showHideForm}>
+            {showForm ? "Hide Form" : "Add new Appointment"}
+          </Button>
         </Col>
       </Row>
       <br />

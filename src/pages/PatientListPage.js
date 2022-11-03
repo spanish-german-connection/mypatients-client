@@ -4,7 +4,8 @@ import axios from "axios";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
 import AddPatient from "./../components/AddPatient"
-import { Divider, Button, Radio, Row, Col } from 'antd';
+import { Divider, Button, Row, Col } from 'antd';
+import getAuthHeader from "../utils/token";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -16,13 +17,9 @@ function PatientListPage() {
   const [btnType, setBtnType] = useState("primary");
 
   const getAllPatients = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
-    // Send the token through the request "Authorization" Headers
     axios
       .get(
-        `${API_URL}/api/patients`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
+        `${API_URL}/api/patients`, getAuthHeader()
       )
       .then((response) => setPatients(response.data))
       .catch((error) => console.log(error));
@@ -32,16 +29,9 @@ function PatientListPage() {
     getAllPatients();
   }, []);
 
-
   const showHideForm = () => {
-    setShowForm((prevState) => {
-      return !prevState;
-    })
-    if (showForm) {
-      setBtnType("primary");
-    } else {
-      setBtnType("")
-    }
+    setShowForm((prevState) => !prevState);
+    showForm ? setBtnType("primary") : setBtnType("");
   }
 
   return (
@@ -54,7 +44,7 @@ function PatientListPage() {
       <Row>
         <Col span={8} offset={8}>
           <Button type={btnType} size="large" onClick={showHideForm}>
-            {showForm ? "Hide Form" : "Add new patient"}
+            {showForm ? "Hide Form" : "Add new Patient"}
           </Button>
         </Col>
       </Row>
