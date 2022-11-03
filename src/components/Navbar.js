@@ -24,7 +24,7 @@ function Navbar() {
           <Button size="large" onClick={logOutUser}>
             Logout
           </Button>
-          <span>{user && user.name}</span>
+          <span>Welcome back {user && user.name}</span>
         </>
       )}
 
