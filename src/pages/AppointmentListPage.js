@@ -12,7 +12,6 @@ function AppointmentListPage() {
   const [btnType, setBtnType] = useState("primary");
 
   const fetchAppointments = () => {
-    const token = localStorage.getItem("authToken");
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/appointments`, getAuthHeader())
       .then((response) => setAppointments(response.data))

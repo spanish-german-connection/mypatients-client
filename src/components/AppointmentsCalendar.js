@@ -30,7 +30,7 @@ function AppointmentsCalendar({
 
   const fetchEvents = () => {
     if (appointments) {
-      const events = appointments.map((appointment) => {
+      const newEvents = appointments.map((appointment) => {
         return {
           start: moment(appointment.date).toDate(),
           end: moment(appointment.date).add(1, "hours").toDate(),
@@ -38,7 +38,7 @@ function AppointmentsCalendar({
           resource: appointment, //we will store the appointmentId here
         };
       });
-      setEvents(events);
+      setEvents(newEvents);
     }
   };
 

@@ -213,7 +213,7 @@ function AppointmentCard({
         >
           <Switch />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="Recurring?"
           className="align-left"
           name="recurring"
@@ -226,7 +226,7 @@ function AppointmentCard({
             <Radio value="weekly">weekly</Radio>
             <Radio value="biweekly">biweekly</Radio>
           </Radio.Group>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="Notes:" name="notes">
           <TextEditor />
         </Form.Item>
