@@ -47,6 +47,17 @@
   margin: 0.5rem;
 }
 
-.search-bar{
+.search-bar {
   margin: 1rem;
+}
+
+.big-calendar {
+  /* height: 100vh; */
+  width: 75%;
+  margin: 0 auto;
+}
+
+.patient-list {
+  width: 50%;
+  margin: 0 auto;
 }

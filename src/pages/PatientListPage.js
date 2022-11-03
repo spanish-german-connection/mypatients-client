@@ -1,16 +1,14 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
-import AddPatient from "./../components/AddPatient"
-import { Divider, Button, Row, Col } from 'antd';
+import AddPatient from "./../components/AddPatient";
+import { Divider, Button, Row, Col, Table, Tag, Space } from "antd";
 import getAuthHeader from "../utils/token";
-import Search from '../components/Search';
+import Search from "../components/Search";
 
 const API_URL = process.env.REACT_APP_API_URL;
-
-
 
 function PatientListPage() {
   const [patientsFromDB, setPatientsFromDB] = useState([]);
@@ -21,9 +19,7 @@ function PatientListPage() {
 
   const getAllPatients = () => {
     axios
-      .get(
-        `${API_URL}/api/patients`, getAuthHeader()
-      )
+      .get(`${API_URL}/api/patients`, getAuthHeader())
       .then((response) => {
         setPatientsFromDB(response.data);
         setListOfPatients(response.data);
@@ -38,24 +34,65 @@ function PatientListPage() {
   const showHideForm = () => {
     setShowForm((prevState) => !prevState);
     showForm ? setBtnType("primary") : setBtnType("");
-  }
+  };
 
   const searchPatient = (query) => {
     setListOfPatients(() => {
-      return query !== ''
-        ? patientsFromDB.filter((patient) =>
-          patient.name.toLowerCase().includes(query.toLowerCase()) 
-        )
+      return query !== ""
+        ? patientsFromDB.filter(
+            (patient) =>
+              patient.name.toLowerCase().includes(query.toLowerCase()) ||
+              patient.surname.toLowerCase().includes(query.toLowerCase())
+          )
         : patientsFromDB;
     });
   };
 
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Surname",
+      dataIndex: "surname",
+      key: "surname",
+    },
+    {
+      title: "Age",
+      dataIndex: "dateOfBirth",
+      key: "dateOfBirth",
+      render: (_, { dateOfBirth }) => (
+        <>{moment().diff(dateOfBirth, "years")}</>
+      ),
+    },
+    {
+      title: "Added on",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      render: (_, { createdAt }) => (
+        <>{moment(createdAt).format("DD-MMM-YYYY")}</>
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      align: "center",
+      render: (_, record) => (
+        <Space size="middle">
+          <Link to={`/patients/${record._id}`} style={{ textAlign: "center" }}>
+            <Button>Details</Button>
+          </Link>
+        </Space>
+      ),
+    },
+  ];
+
   return (
     <div className="PatientListPage">
-
-      {showForm && (
-        <AddPatient refreshPatients={getAllPatients} />
-      )}
+      {showForm && <AddPatient refreshPatients={getAllPatients} />}
 
       <Row>
         <Col span={8} offset={8}>
@@ -72,28 +109,15 @@ function PatientListPage() {
         </Col>
       </Row>
       <Divider>Patients</Divider>
-
-
-      {listOfPatients.map(patient => {
-        return (
-
-          <div key={patient._id}>
-            <h3>{patient.name}, {patient.surname}</h3>
-            <p>Date of birth: {`${moment(patient.dateOfBirth).format(
-              "DD-MMM-YYYY"
-            )}`}</p>
-
-            <Link to={`/patients/${patient._id}`}>
-              <Button>Details</Button>
-            </Link>
-
-          </div>
-        )
-      })}
-
+      <Table
+        className="patient-list"
+        rowKey={(record) => record._id}
+        columns={columns}
+        dataSource={listOfPatients}
+        bordered
+      />
     </div>
-  )
-
+  );
 }
 
 export default PatientListPage;
