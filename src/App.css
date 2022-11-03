@@ -20,6 +20,8 @@
   font-family: Lora;
   font-size: 17px;
   line-height: 25px;
+  width: 75%;
+  margin: 0 auto;
 }
 
 .align-left {
