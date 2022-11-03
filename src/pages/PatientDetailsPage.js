@@ -95,7 +95,7 @@ function PatientDetailsPage() {
                     </Link>
 
                     <Link to="/patients">
-                        <Button className='btn-margin'>Back to Patients</Button>
+                        <Button className='btn-margin'>Back</Button>
                     </Link>
 
 

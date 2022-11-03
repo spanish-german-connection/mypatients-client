@@ -212,7 +212,7 @@ function EditPatientPage() {
 
                 <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
                     <Button type="primary" htmlType="submit" className='btn-margin'>
-                        Submit
+                        Update
                     </Button>
 
                     <Link to={`/patients/${patientId}`} className='btn-margin'>

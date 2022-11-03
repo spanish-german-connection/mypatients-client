@@ -167,7 +167,7 @@ function AddPatient({ refreshPatients }) {
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Create
           </Button>
         </Form.Item>
       </Form>

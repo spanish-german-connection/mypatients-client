@@ -233,11 +233,11 @@ function AppointmentCard({
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" className='btn-margin'>
             {appointmentToEdit ? "Update" : "Create"}
           </Button>
           {appointmentToEdit && (
-            <Button onClick={showDeleteConfirm} danger>
+            <Button  onClick={showDeleteConfirm} danger className='btn-margin'>
               Delete
             </Button>
           )}
