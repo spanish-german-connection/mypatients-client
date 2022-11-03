@@ -5,6 +5,7 @@ import moment from "moment/moment";
 import { Link } from "react-router-dom";
 import TextArea from "antd/lib/input/TextArea";
 import getAuthHeader from "../utils/token";
+import TextEditor from "../components/TextEditor";
 import {
     Alert,
     Button,
@@ -85,7 +86,7 @@ function EditPatientPage() {
         <div className="EditPatientPage">
             {errorMessage && (
                 <Row>
-                    <Col span="4" offset="10">
+                    <Col span="8" offset="8">
                         <Alert
                             message="There was an error"
                             description={errorMessage}
@@ -98,8 +99,8 @@ function EditPatientPage() {
 
             <Form
                 form={form}
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 4 }}
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 8 }}
                 onFinish={handleSubmit}
                 autoComplete="off"
             >
@@ -198,7 +199,7 @@ function EditPatientPage() {
                         },
                     ]}
                 >
-                    <TextArea />
+                    <TextEditor/>
                 </Form.Item>
 
                 <Form.Item
@@ -206,15 +207,15 @@ function EditPatientPage() {
                     name="medications"
                     className="align-left"
                 >
-                    <TextArea />
+                    <TextEditor/>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" className='btn-margin'>
                         Submit
                     </Button>
 
-                    <Link to={`/patients/${patientId}`}>
+                    <Link to={`/patients/${patientId}`} className='btn-margin'>
                         <Button>
                             Cancel
                         </Button>

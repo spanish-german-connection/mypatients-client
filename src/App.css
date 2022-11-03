@@ -42,3 +42,7 @@
   text-align: center;
   line-height: 0.9em;
 }
+
+.btn-margin {
+  margin: 0.5rem;
+}

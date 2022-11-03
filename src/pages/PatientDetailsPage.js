@@ -42,38 +42,51 @@ function PatientDetailsPage() {
                 <>
                     <Divider>Patient details</Divider>
                     <Row className="row-patient-detail">
-                        <Col className='ctn' span="16" offset="0">
-                            <Typography>
-                                <pre> <span className='align-left'>Name:</span> {patient.name}</pre>
+                        {/* <Col> */}
+                            <Col span="8" offset="0">
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Name:</span>
+                                <pre className="align-left">{patient.name}</pre>
                             </Typography>
-                            <Typography>
-                                <pre>Surname: {patient.surname}</pre>
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Surname:</span>
+                                <pre className="align-left">{patient.surname}</pre>
                             </Typography>
-                            <Typography>
-                                <pre>Date of birth:   {moment(patient.dateOfBirth).format(
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Date of birth:</span>
+                                <pre className="align-left">{moment(patient.dateOfBirth).format(
                                     "DD-MMM-YYYY"
                                 )}</pre>
                             </Typography>
-                            <Typography>
-                                <pre>Therapist:   {patient.therapist.name}</pre>
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Therapist:</span>
+                                <pre className="align-left">{patient.therapist.name}</pre>
                             </Typography>
-                            <Typography>
-                                <pre> Email-Address:  {patient.email}</pre>
-                            </Typography>
-                        </Col>
-                    </Row>
-                    <Row className="row-patient-detail">
-                        <Col span="16">
 
-                            <Typography>
-                                <pre>Diagnoses:   {patient.diagnoses}</pre>
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Email-Address:</span>
+                                <pre className="align-left">{patient.email}</pre>
                             </Typography>
 
 
-
-                            <Typography>
-                                <pre> Medications:   {patient.medications}</pre>
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Diagnoses:</span>
+                                <pre className="align-left">
+                                    <span dangerouslySetInnerHTML={{ __html: patient.diagnoses }}>
+                                    </span>
+                                </pre>
                             </Typography>
+                            <Typography className="pd-flex">
+                                <span className="pd-label">Medications:</span>
+                                <pre className="align-left">
+                                    <span dangerouslySetInnerHTML={{ __html: patient.medications }}>
+                                    </span>
+                                </pre>
+
+
+
+                            </Typography>
+
                         </Col>
                     </Row>
 
@@ -84,6 +97,8 @@ function PatientDetailsPage() {
                     <Link to="/patients">
                         <Button className='btn-margin'>Back to Patients</Button>
                     </Link>
+
+
 
                 </>
             )}

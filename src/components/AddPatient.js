@@ -11,6 +11,7 @@ import {
 import TextArea from "antd/lib/input/TextArea";
 import axios from "axios";
 import React, { useState } from "react";
+import TextEditor from "./TextEditor";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -153,7 +154,7 @@ function AddPatient({ refreshPatients }) {
             },
           ]}
         >
-          <TextArea />
+          <TextEditor/>
         </Form.Item>
 
         <Form.Item
@@ -161,7 +162,7 @@ function AddPatient({ refreshPatients }) {
           name="medications"
           className="align-left"
         >
-          <TextArea />
+          <TextEditor/>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 9, span: 6 }}>
