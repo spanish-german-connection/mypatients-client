@@ -42,11 +42,9 @@ function PatientDetailsPage() {
                 <>
                     <Divider>Patient details</Divider>
                     <Row className="row-patient-detail">
-                        {/* <Col className='ctn' span="4" offset="10"> */}
-                        <Col>
-
+                        <Col className='ctn' span="16" offset="0">
                             <Typography>
-                                <pre>Name: {patient.name}</pre>
+                                <pre> <span className='align-left'>Name:</span> {patient.name}</pre>
                             </Typography>
                             <Typography>
                                 <pre>Surname: {patient.surname}</pre>
@@ -65,15 +63,12 @@ function PatientDetailsPage() {
                         </Col>
                     </Row>
                     <Row className="row-patient-detail">
-                        <Col>
+                        <Col span="16">
 
                             <Typography>
                                 <pre>Diagnoses:   {patient.diagnoses}</pre>
                             </Typography>
-                            </Col>
-                    </Row>
-                    <Row className="row-patient-detail">
-                        <Col>
+
 
 
                             <Typography>
@@ -83,11 +78,11 @@ function PatientDetailsPage() {
                     </Row>
 
                     <Link to={`/patient/edit/${patientId}`} >
-                        <Button type="primary">Edit Patient</Button>
+                        <Button className='btn-margin' type="primary">Edit Patient</Button>
                     </Link>
 
                     <Link to="/patients">
-                        <Button>Back to Patients</Button>
+                        <Button className='btn-margin'>Back to Patients</Button>
                     </Link>
 
                 </>
