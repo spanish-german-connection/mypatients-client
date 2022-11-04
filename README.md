@@ -19,6 +19,8 @@ Find the live app [here](https://mypatients.netlify.app/)
 <img src="./public/home.png" alt="drawing" style="width:1000px;"/>
 
 <br/>
+<img src="./public/add-patient.png" alt="drawing" style="width:1000px;"/>
+<br/>
 <img src="./public/patients.png" alt="drawing" style="width:1000px;"/>
 <br/>
 <img src="./public/appointments.png" alt="drawing" style="width:1000px;"/>
