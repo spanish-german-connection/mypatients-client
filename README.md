@@ -1,6 +1,6 @@
 # Mypatients App
 
-This project was created as part of the Web Development Bootcamp from Ironhack, to practice all the concepts learn during the module 3 of the Bootcamp implementing an application based on the MERN Stack (MongoDB Express Angular Node).
+This project was created as part of the Web Development Bootcamp from Ironhack, to practice all the concepts learn during the module 3 of the Bootcamp implementing an application based on the MERN Stack (MongoDB Express React Node).
 
 The application was planned as a website for therapists to have a blog site with articles and events, and also a common place to manage its patients and the appointments with them.
 
